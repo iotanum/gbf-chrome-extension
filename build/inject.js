@@ -1,11 +1,16 @@
 function tryJoiningRaid(url, payload) {
     var http = new XMLHttpRequest();
     http.open('POST', url, true);
+    
+    //Random website script to extract game version from
+    var randomScript = (document.getElementsByTagName('script')[2].src).toString();
+    var srcSplit = randomScript.split('/');
+    var gameVersion = srcSplit[srcSplit.length - 3];
 
     http.setRequestHeader('Accept', 'application/json, text/javascript, */*; q=0.01');
     http.setRequestHeader('Content-Type', 'application/json');
     http.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-    http.setRequestHeader('X-VERSION', '1554462529');
+    http.setRequestHeader('X-VERSION', gameVersion);
 
     http.onreadystatechange = function() {
         if (http.readyState == XMLHttpRequest.DONE) {
