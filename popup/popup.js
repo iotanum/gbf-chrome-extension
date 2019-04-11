@@ -9,10 +9,9 @@ searchButton.onclick = function() {
     })
     var payload = { special_token: null, battle_key: raidId };
 
-    chrome.tabs.executeScript({code: 
-        'var payload = ' + JSON.stringify(payload) + ';'}, function() {
-            chrome.tabs.executeScript({code: 'var url = "/quest/battle_key_check";'}, function() {
-                chrome.tabs.executeScript({code: 'tryJoiningRaid(url, payload);'});
-            })
-        });
+    chrome.tabs.executeScript({code: 'var payload = ' + JSON.stringify(payload) + ';'}, function() {
+        chrome.tabs.executeScript({code: 'var url = "/quest/battle_key_check";'}, function() {
+            chrome.tabs.executeScript({code: 'tryJoiningRaid(url, payload);'});
+        })
+    });
 };

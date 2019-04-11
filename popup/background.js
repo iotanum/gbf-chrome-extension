@@ -11,7 +11,7 @@ chrome.runtime.onInstalled.addListener(function() {
 });
 
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-    var options = message.raid;
+  var options = message.raid;
 	console.log('Raid id', options.raidId);
 	sendResponse('eik nx');
 });

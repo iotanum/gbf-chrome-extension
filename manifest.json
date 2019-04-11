@@ -2,11 +2,10 @@
 	"name": "Raid Join",
     "version": "1.0",
 	"permissions": ["declarativeContent", 
-									"storage",
-									"activeTab",
-									"tabs",
-									"http://game.granbluefantasy.jp/"
-								],
+					"storage",
+					"activeTab",
+					"tabs",
+					"http://game.granbluefantasy.jp/"],
 	"background": {
 		"scripts": ["/popup/background.js"],
 		"persistent": false
@@ -16,7 +15,8 @@
 		},
 	"content_scripts": [{
 		"matches": ["http://game.granbluefantasy.jp/*"],
-		"js": ["/build/inject.js"]
+		"js": ["/build/inject.js"],
+		"run_at": "document_idle"
 	}],
     "manifest_version": 2
 }
