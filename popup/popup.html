@@ -4,15 +4,25 @@
 			<link rel="stylesheet" type="text/css" href="/css/styles.css">
 	</head>
     <body>
-		<div class="search-wrapper">
-			<input class="raid-id-input"></input>
-			<button class="raid-search-btn">Join</button>
-			<script src="popup.js"></script>
+				<div class="search-wrapper">
+			<div className="search-bar">
+				<input id="searchBar"
+					type="text"
+					placeholder="search"
+					autocomplete="off"
+					autocorrect="off"
+					autocapitalize="off"
+					spellcheck="false"
+					/>
+				<ul id="searchBarSuggestion" class="suggestions-list-wrapper"> </ul>
 		</div>
-		<div>
+			<div>
 			<ul class="raids-ul">
-			<script src="/build/raids.js"></script>
 			</ul>
 		</div>
+		</div>
     </body>
- </html>
+				<script src="/build/raids.js"></script>
+				<script src="search.js"></script>
+				<script src="popup.js"></script>
+		</html>
