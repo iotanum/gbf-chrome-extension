@@ -1,8 +1,70 @@
 .raid-id-input {
     margin-right: 5px;
 }
-
+.raids-ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid grey;
+}
+.raids-ul button {
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+.raids-ul button:hover {
+    background-color: darkgrey;
+    transition: 250ms;
+}
+.raids-ul button:active {
+    background-color: rgb(230, 230, 230);
+    transition: 100ms;
+}
+.raids-ul button + button {
+    border-top: 1px solid grey;
+}
+.raids-ul li {
+    padding: 10px 0;
+}
+.raids-ul li span {
+    margin: 0 10px;
+}
 .search-wrapper {
-    display: inline-flex;
-    
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.suggestions-list-wrapper {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid grey;
+    background: white;
+    width: 100%;
+    box-sizing: border-box;
+}
+.suggestions-list-wrapper button {
+    outline: none;
+    border: none;
+    background: none;
+    cursor: pointer;
+    width: 100%;
+    padding: 3px;
+}
+.suggestions-list-wrapper button:hover {
+    background-color: darkgrey;
+    transition: 250ms;
+}
+.suggestions-list-wrapper button:active {
+    background-color: rgb(230, 230, 230);
+    transition: 100ms;
+}
+.suggestions-list-wrapper .active {
+    background-color: rgb(230, 230, 230);
+    transition: 100ms;
+}
+.suggestions-list-wrapper button + button {
+    border-top: 1px solid grey;
 }
