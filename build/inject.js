@@ -15,7 +15,7 @@ function tryJoiningRaid(url, payload) {
     http.onreadystatechange = function() {
         if (http.readyState == XMLHttpRequest.DONE) {
 
-            var success = parseResponse(http);
+            let success = parseResponse(http);
 
             if (success == true) {
 
@@ -33,22 +33,22 @@ function tryJoiningRaid(url, payload) {
 };
 
 function joinRaid(response) {
-    var jsonResponse = JSON.parse(response.responseText);
-    var responseRedirect = jsonResponse['redirect'];
+    let jsonResponse = JSON.parse(response.responseText);
+    let responseRedirect = jsonResponse['redirect'];
 
     window.location.href = responseRedirect
 
 }
 
 function parseResponse(response) {
-    var jsonResponse = JSON.parse(response.responseText);
+    let jsonResponse = JSON.parse(response.responseText);
     
     if (jsonResponse['redirect']) {
 
         return true;
 
     } else {
-
+        console.log(jsonResponse)
         return jsonResponse['popup']['body'];
 
     }
