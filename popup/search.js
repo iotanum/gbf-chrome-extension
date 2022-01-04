@@ -2,6 +2,7 @@ const searchInput = document.getElementById("searchBar")
 const searchInputSuggestions = document.getElementById("searchBarSuggestion")
 let inputText = ""
 let bossList = []
+let fullRaidList = []
 let bossListSuggestion = []
 let activeSuggestion = -1
 
@@ -33,6 +34,7 @@ document.getElementById("searchBar").onkeydown = (e) => {
         }
     }
     if (e.code === 'Enter') {
+        console.log(swx)
         handleBossRequest(inputText)
     }
 
@@ -43,14 +45,11 @@ document.getElementById("searchBar").onkeydown = (e) => {
 function handleBossRequest(boss) {
     bossIdList = []
     lstn.innerHTML = ''
-    if (intervalID) clearInterval(intervalID)
     if (bossList.includes(boss))
     {
         bossListSuggestion = [];
         document.getElementById('searchBarSuggestion').innerHTML = '';
-        intervalID = setInterval(function(){
-            getBossRaids(boss);
-        }, 500);
+        getBossRaids(boss);
         document.getElementById("searchBar").blur()
     }
 }
