@@ -6,8 +6,8 @@ let webSocketsUrl = "wss://gbf-raidfinder-tw.herokuapp.com/ws/raids?keepAlive=tr
 let bossIdList = []
 let decodedFile = {}
 counter = 1
-getAllBosses()
 let autoJoinHidden = true
+getAllBosses()
 getAllDecodedRaids()
 
 function getAllDecodedRaids() {

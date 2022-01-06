@@ -2,12 +2,12 @@
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
         if (request['joinStatus']) {
-            findAndUpdateRaidStatus(request['joinStatus'])
+            UpdateRaidStatusButton(request['joinStatus'])
         }
     }
 );
 
-function findAndUpdateRaidStatus(joinStatus) {
+function UpdateRaidStatusButton(joinStatus) {
     for (let raidIdAndStatus of joinStatus) {
         let raidId = Object.keys(raidIdAndStatus)[0]
         console.log(raidId, raidIdAndStatus, "findAndUpdateRaidStatus")
@@ -35,7 +35,7 @@ function parseRaidStatus(raidId, joinStatus) {
     }
 }
 
-function findAndFixButton(raidId) {
+function updateSelectedButtons(raidId) {
     for (let btn of document.getElementsByTagName('button')) {
         let btnSpanNodeFirst = btn.getElementsByTagName("span")[0]
         let btnSpanNodeSecond = btn.getElementsByTagName("span")[1]
@@ -46,7 +46,7 @@ function findAndFixButton(raidId) {
 }
 
 const buttonOnclick = (raidId) => () => {
-    findAndFixButton(raidId)
+    updateSelectedButtons(raidId)
 
     chrome.runtime.sendMessage({raid: raidId}, function(response) {
         console.log(response, 120);
