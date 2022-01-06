@@ -14,7 +14,7 @@ document.getElementById("searchBar").onkeydown = (e) => {
         if (activeSuggestion >= 0) document.getElementById('searchBarSuggestion').getElementsByTagName('button')[activeSuggestion].classList.remove('active')
         activeSuggestion++
         document.getElementById('searchBarSuggestion').getElementsByTagName('button')[activeSuggestion].classList.add('active')
-        input.value = document.getElementById('searchBarSuggestion').getElementsByTagName('li')[activeSuggestion].innerHTML
+        input.value = document.getElementById('searchBarSuggestion').getElementsByTagName('li')[activeSuggestion].innerHTML.replace(/&amp;/g, '&')
         inputText = input.value
     }
     if (e.code === 'ArrowUp' && activeSuggestion > 0) 
@@ -22,7 +22,7 @@ document.getElementById("searchBar").onkeydown = (e) => {
         document.getElementById('searchBarSuggestion').getElementsByTagName('button')[activeSuggestion].classList.remove('active')
         activeSuggestion--
         document.getElementById('searchBarSuggestion').getElementsByTagName('button')[activeSuggestion].classList.add('active')
-        input.value = document.getElementById('searchBarSuggestion').getElementsByTagName('li')[activeSuggestion].innerHTML
+        input.value = document.getElementById('searchBarSuggestion').getElementsByTagName('li')[activeSuggestion].innerHTML.replace(/&amp;/g, '&')
         inputText = input.value
         if (typeof input.selectionStart == "number") {
             input.selectionStart = input.selectionEnd = input.value.length;
@@ -34,7 +34,6 @@ document.getElementById("searchBar").onkeydown = (e) => {
         }
     }
     if (e.code === 'Enter') {
-        console.log(swx)
         handleBossRequest(inputText)
     }
 

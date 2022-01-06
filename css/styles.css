@@ -1,3 +1,7 @@
+body {
+    background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+}
+
 .raid-id-input {
     margin-right: 5px;
 }
@@ -13,6 +17,7 @@
     border: none;
     background: none;
     cursor: pointer;
+    box-shadow: 1px 3px #888888;
 }
 .raids-ul button:hover {
     background-color: darkgrey;
@@ -22,6 +27,15 @@
     background-color: rgb(230, 230, 230);
     transition: 100ms;
 }
+
+.raids-ul button.selected {
+    background-color: darkgrey;
+}
+
+.raids-ul span.numOrder {
+    float:  left;
+}
+
 .raids-ul button + button {
     border-top: 1px solid grey;
 }
@@ -67,4 +81,30 @@
 }
 .suggestions-list-wrapper button + button {
     border-top: 1px solid grey;
+}
+
+.auto-join-wrapper.hidden {
+    display:  none;
+}
+
+.raids-ul li {
+    text-shadow: 1px dimgray;
+    animation: fadein 1.5s;
+    -webkit-animation: fadein 1.5s; /* Safari and Chrome */
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
 }

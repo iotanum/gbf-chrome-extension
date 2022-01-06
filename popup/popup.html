@@ -4,7 +4,7 @@
 			<link rel="stylesheet" type="text/css" href="/css/styles.css">
 	</head>
     <body>
-				<div class="search-wrapper">
+		<div class="search-wrapper">
 			<div className="search-bar">
 				<input id="searchBar"
 					type="text"
@@ -15,11 +15,15 @@
 					spellcheck="false"
 					/>
 				<ul id="searchBarSuggestion" class="suggestions-list-wrapper"> </ul>
-		</div>
+			</div>
 			<div>
-			<ul class="raids-ul">
-			</ul>
-		</div>
+				<ul class="raids-ul">
+				</ul>
+			</div>
+			<div class="auto-join-wrapper hidden">
+				<input type="checkbox" id="auto-join"/>
+  				<label for="auto-join"> Auto join latest raid</label><br>
+			</div>
 		</div>
     </body>
 				<script src="/build/raids.js"></script>

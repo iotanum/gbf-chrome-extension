@@ -1,4 +1,5 @@
 let lstn = document.querySelector(".raids-ul");
+let autoJoinDiv = document.querySelector(".auto-join-wrapper")
 
 let intervalID = ''
 let webSocketsUrl = "wss://gbf-raidfinder-tw.herokuapp.com/ws/raids?keepAlive=true"
@@ -6,6 +7,7 @@ let bossIdList = []
 let decodedFile = {}
 counter = 1
 getAllBosses()
+let autoJoinHidden = true
 getAllDecodedRaids()
 
 function getAllDecodedRaids() {
@@ -68,39 +70,63 @@ function getBossRaids(boss) {
 };
 
 function updateGUIList(raidId) {
+    if (raidId === "") {
+        return
+    }
 
     if (bossIdList.length > 4)
     {
-        bossIdList.shift()
-        lstn.removeChild(lstn.getElementsByTagName("button")[0])
+        bossIdList.pop()
+        lstn.removeChild(lstn.getElementsByTagName("button")[4])
 
         // refresh everyone's index in the list displayed
         for (let btn of lstn.getElementsByTagName("button")) {
             let btnSpanNodeFirst = btn.getElementsByTagName("span")[0]
             let btnSpanNodeSecond = btn.getElementsByTagName("span")[1]
-            btnSpanNodeFirst.innerHTML = bossIdList.indexOf(btnSpanNodeSecond.innerHTML) + 1
+            raidIdFromClass = btnSpanNodeSecond.classList[0]
+            btnSpanNodeFirst.innerHTML = bossIdList.indexOf(raidIdFromClass) + 2
         }
     }
-    bossIdList.push(raidId)
+    bossIdList.unshift(raidId)
+
+    // raid button creation
     let button = document.createElement("button");
     let listItem = document.createElement("li");
     let spanNodeFirst = document.createElement("span");
+    spanNodeFirst.classList.add('numOrder')
     let spanNodeSecond = document.createElement("span");
-    spanNodeFirst.innerHTML = bossIdList.indexOf(raidId) + 1
+    const raidNumInList = bossIdList.indexOf(raidId) + 1
+    spanNodeFirst.innerHTML = raidNumInList
     spanNodeSecond.innerHTML = raidId
+    spanNodeSecond.classList.add(raidId ? raidId : 1)
+
+    // some logic to get the raids to the top of the list
+    // create the element first
     button.appendChild(listItem);
     listItem.appendChild(spanNodeFirst);
     listItem.appendChild(spanNodeSecond);
-    lstn.appendChild(button);
+    // prepend if there's an existing list or append if there's no list (extension start)
+    if (lstn.getElementsByTagName("button").length > 1) {
+        lstn.prepend(button)
+    } else {
+        lstn.appendChild(button)
+    }
 
-    // let liBtns = lstn.getElementsByTagName("button")
-    // for (let btn in liBtns) {
-    //     lstn.removeChild(btn)
-    // }
-    // for (let btn in liBtns.reverse()) {
-    //     lstn.appendChild(btn)
-    // }
+    // unhide auto-join checkbox upon displaying raids
+    if (autoJoinHidden === true) {
+        autoJoinHidden = false
+        autoJoinDiv.classList.remove("hidden")
+    }
+
     button.onclick = buttonOnclick(raidId)
+
+    // if auto-join is checked - enter the first raid after an update
+    if (document.getElementById('auto-join').checked) {
+        let btn = lstn.getElementsByTagName("button")[0]
+        btn.onclick()
+        autoJoinHidden = true
+        document.getElementById('auto-join').checked = false
+    }
 }
 
 function getNihongoBossName(boss) {
@@ -141,10 +167,21 @@ function cleanMessage(input) {
             line = "";
         };
 
-        // FIX THIS
-        if (line.includes("0012")) {
-            line = line.substring(6);
+        // qilin and huang specific cleanup
+        if (line.includes("Huanglong & Qilin") || line.includes("HL")) {
+            line = line.substring(1);
+            if (line.endsWith("1")) {
+                line = line.substring(0, line.length - 2)
+            }
         };
+
+        // four primarch specific cleanup
+        if (line.includes("The Four Primarchs") || line.includes("ＨＬ")) {
+            line = line.substring(1)
+            if (line.endsWith("1")) {
+                line = line.substring(0, line.length - 2)
+            }
+        }
 
         if (line === "") {
             continue;

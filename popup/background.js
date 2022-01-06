@@ -10,8 +10,16 @@ chrome.runtime.onInstalled.addListener(function() {
 		});
 });
 
+// messages from page itself
 chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
-  let options = message.raid;
-	console.log('Raid id', options.raidId);
-	sendResponse('eik nx');
+	console.log(message, "the message")
+	if (message['joinStatus']) {
+		sendStatusToExtension(message)
+	}
+	sendResponse(true);
 });
+
+// send messages from chrome runtime to extension
+function sendStatusToExtension(status) {
+	chrome.runtime.sendMessage(status);
+}

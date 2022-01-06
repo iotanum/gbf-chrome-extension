@@ -1,3 +1,5 @@
+lastJoinStatus = {"joinStatus": []}
+
 function tryJoiningRaid(url, payload) {
     let http = new XMLHttpRequest();
     http.open('POST', url, true);
@@ -22,15 +24,21 @@ function tryJoiningRaid(url, payload) {
                 joinRaid(http);
 
             } else {
-
+                joinStatus = {}
+                joinStatus[payload['battle_key']] = success
+                lastJoinStatus['joinStatus'].push(joinStatus)
                 console.log('Failed:', success);
-
+                sendUpdateToFE(lastJoinStatus)
             }
         }
     }
 
     http.send(JSON.stringify(payload));
 };
+
+function sendUpdateToFE(lastJoinStatus) {
+    chrome.runtime.sendMessage(lastJoinStatus)
+}
 
 function TestRequestBulka(url) {
     let http = new XMLHttpRequest();
@@ -48,12 +56,11 @@ function TestRequestBulka(url) {
     http.onreadystatechange = function() {
         if (http.readyState == XMLHttpRequest.DONE) {
 
-            console.log("Successfully entered?");
-
+            // console.log(lastJoinStatus)
         }
     }
 
-    http.send();
+    // http.send();
 }
 
 function joinRaid(response) {
@@ -72,11 +79,14 @@ function parseResponse(response) {
 
         return true;
 
+    } else if (jsonResponse['current_battle_point']) {
+
+        console.log("Not enough EP!")
     } else {
+
         console.log(jsonResponse)
         return jsonResponse['popup']['body'];
-
     }
 }
-console.log('Injection finished.');
+// console.log('Injection finished.');
 //# sourceMappingURL=inject.js.map

@@ -7,12 +7,14 @@
 					"tabs",
 					"http://game.granbluefantasy.jp/"],
 	"background": {
-		"scripts": ["/popup/background.js"],
-		"persistent": false
+		"scripts": ["/popup/background.js",
+					"/popup/popup.js",
+				    "/build/raids.js"],
+		"persistent": true
     },
 	"page_action": {
 		"default_popup": "/popup/popup.html"
-		},
+	},
 	"content_scripts": [{
 		"matches": ["http://game.granbluefantasy.jp/*"],
 		"js": ["/build/inject.js"],
