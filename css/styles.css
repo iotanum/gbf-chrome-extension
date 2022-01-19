@@ -2,6 +2,9 @@ body {
     background: linear-gradient(to right, #c9d6ff, #e2e2e2);
 }
 
+.search-bar-input {
+    background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+}
 .raid-id-input {
     margin-right: 5px;
 }
@@ -58,6 +61,7 @@ body {
     background: white;
     width: 100%;
     box-sizing: border-box;
+    background: linear-gradient(to right, #c9d6ff, #e2e2e2);
 }
 .suggestions-list-wrapper button {
     outline: none;
