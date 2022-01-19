@@ -82,6 +82,7 @@ function parseResponse(response) {
     } else if (jsonResponse['current_battle_point']) {
 
         console.log("Not enough EP!")
+        return "Not enough EP!"
     } else {
 
         console.log(jsonResponse)
