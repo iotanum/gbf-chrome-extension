@@ -250,7 +250,7 @@ function getAllBosses() {
         // await and decode hexadecimal msgs
         event.data.text().then(message => {
             // wait for connection to be established and send a request for a full summon list
-            if (message.includes("SNAPSHOT")) {
+            if (message.includes("0.3.7")) {
                 let summonList = new Uint8Array([0x0A, 0x00])
                 connection.send(summonList);
 
