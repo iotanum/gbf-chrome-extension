@@ -5,6 +5,7 @@ let intervalID = ''
 let webSocketsUrl = "wss://gbf-raidfinder-tw.herokuapp.com/ws/raids?keepAlive=true"
 let bossIdList = []
 let decodedFile = {}
+let initialSummonListIdentifier = "0.3.7"
 counter = 1
 let autoJoinHidden = true
 getAllBosses()
@@ -47,7 +48,7 @@ function getBossRaids(boss) {
     connection.onmessage = function (event) {
         event.data.text().then(message => {
             // wait for connection to be established and send a request for a full summon list
-            if (message.includes("SNAPSHOT")) {
+            if (message.includes(initialSummonListIdentifier)) {
                 // Padding for raid boss msg
                 var padding = decodedFile[nihongoName][0]
                 var raidInHex = decodedFile[nihongoName][1]
@@ -250,7 +251,7 @@ function getAllBosses() {
         // await and decode hexadecimal msgs
         event.data.text().then(message => {
             // wait for connection to be established and send a request for a full summon list
-            if (message.includes("0.3.7")) {
+            if (message.includes(initialSummonListIdentifier)) {
                 let summonList = new Uint8Array([0x0A, 0x00])
                 connection.send(summonList);
 
