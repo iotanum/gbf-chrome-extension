@@ -2,10 +2,10 @@ let lstn = document.querySelector(".raids-ul");
 let autoJoinDiv = document.querySelector(".auto-join-wrapper")
 
 let intervalID = ''
-let webSocketsUrl = "wss://gbf-raidfinder-tw.herokuapp.com/ws/raids?keepAlive=true"
+let webSocketsUrl = "wss://gbf-raidfinder.la-foret.me/ws/raids?keepAlive=true"
 let bossIdList = []
 let decodedFile = {}
-let initialSummonListIdentifier = "0.3.7"
+let initialSummonListIdentifier = "0.3.5"
 counter = 1
 let autoJoinHidden = true
 getAllBosses()

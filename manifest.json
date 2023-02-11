@@ -16,7 +16,8 @@
 		"default_popup": "/popup/popup.html"
 	},
 	"content_scripts": [{
-		"matches": ["http://game.granbluefantasy.jp/*"],
+		"matches": ["http://game.granbluefantasy.jp/*",
+			    "https://game.granbluefantasy.jp/*"],
 		"js": ["/build/inject.js"],
 		"run_at": "document_start"
 	}],
